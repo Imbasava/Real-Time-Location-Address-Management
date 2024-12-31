@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+Location Address Flow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application for managing user locations and addresses built with React, Node.js, Express, and MySQL. The app allows users to detect their location automatically or manually search for an address, save it under different categories (Home, Office, Friends & Family), and manage saved addresses in a MySQL database.
+Features
 
-## Available Scripts
+    Location Detection: Automatically fetch the user's current location or allow manual address search.
+    Address Form: Users can input details like House No., Area, and Category (Home, Office, Friends & Family).
+    Address Management: Users can view, edit, and delete saved addresses.
+    Responsive: Optimized for desktop and mobile devices.
 
-In the project directory, you can run:
+Technologies Used
 
-### `npm start`
+    Frontend: React.js, Google Maps API
+    Backend: Node.js, Express.js
+    Database: MySQL
+    Others: Axios (for HTTP requests)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Installation
+1. Clone the repository
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+git clone https://github.com/Imbasava/Location-Address-Flow.git
+cd Location-Address-Flow
 
-### `npm test`
+2. Install dependencies
+Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navigate to the backend directory and install the dependencies:
 
-### `npm run build`
+cd backend
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Navigate to the frontend directory and install the dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+cd frontend
+npm install
 
-### `npm run eject`
+3. Setup MySQL database
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create the location_address_flow database and run the following query to create the addresses table:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+CREATE TABLE addresses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    houseNo VARCHAR(255) NOT NULL,
+    area VARCHAR(255) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6)
+);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Configure MySQL in backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In the backend folder, configure your MySQL database credentials in db.js:
 
-## Learn More
+// backend/db.js
+const mysql = require('mysql2');
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'yourpassword',
+  database: 'location_address_flow',
+});
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Usage
+1. Start the backend server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+cd backend
+npm start
 
-### Code Splitting
+This will run the server on http://localhost:5000.
+2. Start the frontend application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+cd frontend
+npm start
 
-### Analyzing the Bundle Size
+The app will be available on http://localhost:3000.
+API Endpoints
+GET /api/addresses
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Fetch all saved addresses.
 
-### Making a Progressive Web App
+Response:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+{
+  "addresses": [
+    {
+      "id": 1,
+      "houseNo": "123",
+      "area": "Main Street",
+      "category": "home",
+      "latitude": 12.345678,
+      "longitude": 76.543210
+    }
+  ]
+}
 
-### Advanced Configuration
+POST /api/addresses/save
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Save a new address. Request body:
 
-### Deployment
+{
+  "houseNo": "123",
+  "area": "Main Street",
+  "category": "home",
+  "latitude": 12.345678,
+  "longitude": 76.543210
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Response:
 
-### `npm run build` fails to minify
+{
+  "id": 1
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+PUT /api/addresses/update/:id
+
+Update an existing address by ID.
+
+Response:
+
+{
+  "message": "Address updated successfully."
+}
+
+DELETE /api/addresses/delete/:id
+
+Delete an address by ID.
+
+Response:
+
+{
+  "message": "Address deleted successfully."
+}
+
+Contributing
+
+Feel free to fork the repository and submit pull requests. Follow the GitHub flow for contributions.
+License
+
+This project is licensed under the MIT License.
