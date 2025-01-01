@@ -1,141 +1,168 @@
-Location Address Flow
-
+# Location Address Flow
+![Location Address Flow Banner](images/first.jpg)
 A web application for managing user locations and addresses built with React, Node.js, Express, and MySQL. The app allows users to detect their location automatically or manually search for an address, save it under different categories (Home, Office, Friends & Family), and manage saved addresses in a MySQL database.
-Features
 
-    Location Detection: Automatically fetch the user's current location or allow manual address search.
-    Address Form: Users can input details like House No., Area, and Category (Home, Office, Friends & Family).
-    Address Management: Users can view, edit, and delete saved addresses.
-    Responsive: Optimized for desktop and mobile devices.
+---
 
-Technologies Used
+## Features
 
-    Frontend: React.js, Google Maps API
-    Backend: Node.js, Express.js
-    Database: MySQL
-    Others: Axios (for HTTP requests)
+- **Location Detection**: Automatically fetch the user's current location or allow manual address search.
+- **Address Form**: Users can input details like House No., Area, and Category (Home, Office, Friends & Family).
+- **Address Management**: Users can view, edit, and delete saved addresses.
+- **Responsive**: Optimized for desktop and mobile devices.
 
-Installation
-1. Clone the repository
+---
 
-git clone https://github.com/Imbasava/Location-Address-Flow.git
-cd Location-Address-Flow
+## Technologies Used
 
-2. Install dependencies
-Backend
+- **Frontend**: React.js, Google Maps API
+- **Backend**: Node.js, Express.js
+- **Database**: MySQL
+- **Others**: Axios (for HTTP requests)
 
-Navigate to the backend directory and install the dependencies:
+---
 
-cd backend
-npm install
+## Installation
 
-Frontend
+1. **Clone the repository**
 
-Navigate to the frontend directory and install the dependencies:
+    ```bash
+    git clone https://github.com/Imbasava/Location-Address-Flow.git
+    cd Location-Address-Flow
+    ```
 
-cd frontend
-npm install
+2. **Install Dependencies**
 
-3. Setup MySQL database
+    ### Backend
 
-Create the location_address_flow database and run the following query to create the addresses table:
+    Navigate to the backend directory and install the dependencies:
 
-CREATE TABLE addresses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    houseNo VARCHAR(255) NOT NULL,
-    area VARCHAR(255) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    latitude DECIMAL(9,6),
-    longitude DECIMAL(9,6)
-);
+    ```bash
+    cd backend
+    npm install
+    ```
 
-4. Configure MySQL in backend
+    ### Frontend
 
-In the backend folder, configure your MySQL database credentials in db.js:
+    Navigate to the frontend directory and install the dependencies:
 
-// backend/db.js
-const mysql = require('mysql2');
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'yourpassword',
-  database: 'location_address_flow',
-});
+    ```bash
+    cd frontend
+    npm install
+    ```
+3. **Setup MySQL Database**
 
-Usage
-1. Start the backend server
+    Create the `location_address_flow` database and run the following query to create the `addresses` table:
 
-cd backend
-npm start
+    ```sql
+    CREATE TABLE addresses (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        houseNo VARCHAR(255) NOT NULL,
+        area VARCHAR(255) NOT NULL,
+        category VARCHAR(50) NOT NULL,
+        latitude DECIMAL(9,6),
+        longitude DECIMAL(9,6)
+    );
+    ```
 
-This will run the server on http://localhost:5000.
-2. Start the frontend application
+4. **Configure the Environment**
 
-cd frontend
-npm start
+    ### Backend
 
-The app will be available on http://localhost:3000.
-API Endpoints
-GET /api/addresses
+    Create a `.env` file in the backend directory with the following details:
 
-Fetch all saved addresses.
+    ```env
+    DB_HOST=localhost
+    DB_USER=root
+    DB_PASSWORD=your_password
+    DB_NAME=location_address_flow
+    ```
 
-Response:
+    Configure your MySQL database credentials in `db.js`:
 
-{
-  "addresses": [
-    {
-      "id": 1,
-      "houseNo": "123",
-      "area": "Main Street",
-      "category": "home",
-      "latitude": 12.345678,
-      "longitude": 76.543210
-    }
-  ]
-}
+    ```javascript
+    // backend/db.js
+    const mysql = require('mysql2');
+    const db = mysql.createConnection({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+    });
 
-POST /api/addresses/save
+    module.exports = db;
+    ```
 
-Save a new address. Request body:
+    Ensure your MySQL database is running, and the database `location_address_flow` is created.
 
-{
-  "houseNo": "123",
-  "area": "Main Street",
-  "category": "home",
-  "latitude": 12.345678,
-  "longitude": 76.543210
-}
+    ### Frontend
 
-Response:
+    Add your Google Maps API key to the environment. Create a `.env` file in the frontend directory with or can be inlucded in the public index.html:
 
-{
-  "id": 1
-}
+    ```env
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyB3G8KXE6Fewas-______-TBFz4z6ZY&libraries=places
+    ```
 
-PUT /api/addresses/update/:id
+5. **Run the Application**
 
-Update an existing address by ID.
+    ### Backend
 
-Response:
+    ```bash
+    cd backend
+    npm start
+    ```
 
-{
-  "message": "Address updated successfully."
-}
+    ### Frontend
 
-DELETE /api/addresses/delete/:id
+    ```bash
+    npm start
+    ```
 
-Delete an address by ID.
+## API Endpoints
 
-Response:
+### Address Management
 
-{
-  "message": "Address deleted successfully."
-}
+- **Save Address:** POST `/api/addresses/save`
+- **Retrieve Addresses:** GET `/api/addresses/`
+- **Delete Address:** DELETE `/api/addresses/delete/:id`
+- **Update Address:** PUT `/api/addresses/update/:id`
 
-Contributing
+
+## Project Structure
+
+### Frontend
+
+```plaintext
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── LocationSearchMap.js
+│   │   ├── AddressForm.js
+│   │   └── AddressManagement.js
+│   ├── App.js
+│   └── index.js
+├── public/
+│   └── index.html
+```
+### Backend
+``` plaintext
+backend/
+├── routes/
+│ └── addresses.js
+├── db.js
+├── server.js
+└── .env
+```
+## Usage
+
+1. Detect or manually search for a location.
+2. Save the location with additional address details.
+3. View or manage saved addresses in the Address Management section.
+
+## Contributing
 
 Feel free to fork the repository and submit pull requests. Follow the GitHub flow for contributions.
-License
+
+## License
 
 This project is licensed under the MIT License.
