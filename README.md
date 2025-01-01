@@ -19,7 +19,7 @@ A web application for managing user locations and addresses built with React, No
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
 - **Others**: Axios (for HTTP requests)
-
+![Maps pin](images/3rd.png)
 ---
 
 ## Installation
@@ -126,6 +126,8 @@ A web application for managing user locations and addresses built with React, No
 - **Retrieve Addresses:** GET `/api/addresses/`
 - **Delete Address:** DELETE `/api/addresses/delete/:id`
 - **Update Address:** PUT `/api/addresses/update/:id`
+
+  ![Address Management](images/4th.png)
 
 
 ## Project Structure
