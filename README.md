@@ -1,5 +1,5 @@
 # Location Address Flow
-![Location Address Flow Banner](images/first.jpg)
+![Location Address Flow Banner](images/first.png)
 A web application for managing user locations and addresses built with React, Node.js, Express, and MySQL. The app allows users to detect their location automatically or manually search for an address, save it under different categories (Home, Office, Friends & Family), and manage saved addresses in a MySQL database.
 
 ---
