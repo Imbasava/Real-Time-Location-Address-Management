@@ -3,6 +3,27 @@
 A web application for managing user locations and addresses built with React, Node.js, Express, and MySQL. The app allows users to detect their location automatically or manually search for an address, save it under different categories (Home, Office, Friends & Family), and manage saved addresses in a MySQL database.
 
 ---
+---
+
+## Prerequisites
+
+1. **Google Cloud Platform (GCP) Subscription**  
+   Ensure you have a Google Cloud Platform account to access the Google Maps API. You can [create a Google Cloud account here](https://console.cloud.google.com/).
+
+2. **Enable Required APIs**  
+   Go to the **Google Cloud Console** and enable the following APIs:
+   - Google Maps Places API
+   - Google Maps Geolocation API
+   - Google Maps Geocoding API
+
+3. **Obtain an API Key**  
+   - Create an API key under the **Credentials** section of the Google Cloud Console.
+   - Restrict the API key to the required APIs for security purposes.
+   - Add the API key to the `.env` file or wherever your application configures the Google Maps API key.
+
+---
+
+
 
 ## Features
 
