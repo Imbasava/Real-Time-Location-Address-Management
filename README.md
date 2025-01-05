@@ -3,6 +3,12 @@
 A web application for managing user locations and addresses built with React, Node.js, Express, and MySQL. The app allows users to detect their location automatically or manually search for an address, save it under different categories (Home, Office, Friends & Family), and manage saved addresses in a MySQL database.
 
 ---
+## Live Demo
+
+You can view the live application hosted on GitHub Pages at the following link(ONLY FRONTED WORKING IS HOSTED.):
+
+[Live Demo](https://Imbasava.github.io/Real-Time-Location-Address-Management)
+
 ---
 
 ## Prerequisites
