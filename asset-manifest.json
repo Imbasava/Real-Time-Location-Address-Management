@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Real-Time-Location-Address-Management/static/css/main.e6c13ad2.css",
+    "main.js": "/Real-Time-Location-Address-Management/static/js/main.6e9e6bff.js",
+    "static/js/488.6d0a751f.chunk.js": "/Real-Time-Location-Address-Management/static/js/488.6d0a751f.chunk.js",
+    "index.html": "/Real-Time-Location-Address-Management/index.html",
+    "main.e6c13ad2.css.map": "/Real-Time-Location-Address-Management/static/css/main.e6c13ad2.css.map",
+    "main.6e9e6bff.js.map": "/Real-Time-Location-Address-Management/static/js/main.6e9e6bff.js.map",
+    "488.6d0a751f.chunk.js.map": "/Real-Time-Location-Address-Management/static/js/488.6d0a751f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.6e9e6bff.js"
+  ]
+}
